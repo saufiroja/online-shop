@@ -10,6 +10,9 @@ module.exports = {
     host: DB_HOST,
     port: DB_PORT,
     dialect: 'postgres',
+    seederStorage: 'json',
+    seederStoragePath: 'sequelizeData.json',
+    seederStorageTableName: 'sequelize_data',
   },
   test: {
     username: DB_USER,
