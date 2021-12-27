@@ -12,7 +12,7 @@
     "Express",
     "Sequelize"
   ],
-  "author": "Muhammad Saufi Roja",
+  "author": "Muhammad Saufi Roja https://github.com/saufiroja",
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.3.4",
@@ -38,9 +38,12 @@
     "express": "^4.17.2",
     "express-jwt": "^6.1.0",
     "helmet": "^4.6.0",
+    "http-errors": "^2.0.0",
+    "joi": "^17.5.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "pg": "^8.7.1",
-    "sequelize": "^7.0.0-alpha.2"
+    "sequelize": "^7.0.0-alpha.2",
+    "swagger-ui-express": "^4.3.0"
   }
 }

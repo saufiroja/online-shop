@@ -5,6 +5,9 @@ const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
 
+// router import
+const userRouter = require('./routers/user.router');
+
 const app = express();
 
 // connection database
@@ -18,6 +21,17 @@ app.use(cors());
 app.use(helmet());
 
 // router
+app.use('/api', userRouter);
+
+// error handling
+app.use((err, req, res, next) => {
+  const { message, code = 500, error = 'internal server error' } = err;
+  return res.status(code).json({
+    message,
+    code,
+    error,
+  });
+});
 
 // listen port
 const { PORT } = process.env;
