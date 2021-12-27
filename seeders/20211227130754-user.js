@@ -10,7 +10,7 @@ module.exports = {
         {
           firstName: 'Rafindra',
           lastName: 'Ramadhan',
-          email: 'admin0205@gmail.com',
+          email: process.env.EMAIL,
           password: await bcrypt.hash(process.env.PASSWORD, 12),
           isAdmin: true,
           createdAt: new Date(),
