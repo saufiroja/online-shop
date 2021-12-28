@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 
 // router import
+const authRouter = require('./routers/auth.router');
 const userRouter = require('./routers/user.router');
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(cors());
 app.use(helmet());
 
 // router
+app.use('/api', authRouter);
 app.use('/api', userRouter);
 
 // error handling

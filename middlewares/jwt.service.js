@@ -8,7 +8,7 @@ const authenticationToken = async (req, res, next) => {
     const token = authHeader.split(' ')[1];
     try {
       const result = await jwt.verify(token, JWT_SECRET);
-      req.decoded = result;
+      req.user = result;
       next();
     } catch (error) {
       return res.status(401).json({

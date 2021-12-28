@@ -1,12 +1,8 @@
 const router = require('express').Router();
-const { register, login } = require('../controllers/user.controllers');
-const {
-  loginSchema,
-  registerSchema,
-} = require('../middlewares/joi/schema.validator');
-const { validate } = require('../middlewares/joi/joi.validator');
+const { updateUser, getUser } = require('../controllers/user.controllers');
+const { authenticationToken } = require('../middlewares/jwt.service');
 
-router.post('/register', validate(registerSchema), register);
-router.post('/login', validate(loginSchema), login);
+router.get('/account', authenticationToken, getUser);
+router.put('/account', authenticationToken, updateUser);
 
 module.exports = router;
