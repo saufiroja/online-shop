@@ -9,6 +9,7 @@ const helmet = require('helmet');
 const authRouter = require('./routers/auth.router');
 const userRouter = require('./routers/user.router');
 const adminRouter = require('./routers/admin.router');
+const receiptRouter = require('./routers/receipt.router');
 
 const app = express();
 
@@ -25,7 +26,8 @@ app.use(helmet());
 // router
 app.use('/api', authRouter);
 app.use('/api', userRouter);
-app.use('/api', adminRouter);
+app.use('/api/admin', adminRouter);
+app.use('/api/account', receiptRouter);
 
 // error handling
 app.use((err, req, res, next) => {
