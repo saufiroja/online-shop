@@ -10,6 +10,7 @@ const authRouter = require('./routers/auth.router');
 const userRouter = require('./routers/user.router');
 const adminRouter = require('./routers/admin.router');
 const receiptRouter = require('./routers/receipt.router');
+const productRouter = require('./routers/product.router');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use('/api', authRouter);
 app.use('/api', userRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/account', receiptRouter);
+app.use('/api', productRouter);
 
 // error handling
 app.use((err, req, res, next) => {
