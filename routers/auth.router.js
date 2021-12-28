@@ -3,7 +3,7 @@ const { register, login } = require('../controllers/auth.controllers');
 const {
   loginSchema,
   registerSchema,
-} = require('../middlewares/joi/schema.validator');
+} = require('../middlewares/joi/auth.validator');
 const { validate } = require('../middlewares/joi/joi.validator');
 
 router.post('/register', validate(registerSchema), register);

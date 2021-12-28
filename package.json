@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "start:dev": "nodemon server"
+    "start:dev": "nodemon server",
+    "db:migrate": "npx sequelize db:migrate"
   },
   "keywords": [
     "Node.js",
