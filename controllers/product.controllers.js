@@ -93,7 +93,7 @@ exports.getSinglePurchasedProductInfo = async (req, res, next) => {
     return res.status(200).json({
       message: 'success get single product with purchased',
       code: 200,
-      data: receipt[0],
+      data: receipt,
     });
   } catch (error) {
     next(error);
