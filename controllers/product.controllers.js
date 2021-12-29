@@ -57,11 +57,102 @@ exports.getSingleProduct = async (req, res, next) => {
       userId,
     });
 
+    if (!productWithReviewPurchased) {
+      throw new createError[400](`Could not get the product infomation`);
+    }
+
     return res.status(200).json({
       message: 'success get singgle product',
       code: 200,
       productWithReview,
       productWithReviewPurchased,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// GET SINGLE PRODUCT PURCHASED PRODUCT INFO
+exports.getSinglePurchasedProductInfo = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user = req.user.id;
+
+    const receipt = await Receipt.findAll({
+      where: { productId: id, userId: user },
+    });
+
+    if (receipt.length > 0) {
+      throw new createError[403]('No purcahsed product!');
+    }
+
+    if (!receipt) {
+      throw new createError[400]('Could not retrieve receipts');
+    }
+
+    return res.status(200).json({
+      message: 'success get single product with purchased',
+      code: 200,
+      data: receipt[0],
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// CREATE REVIEW
+exports.createReview = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user = req.user.id;
+    const { body, rating } = req.body;
+
+    const reviews = await Review.findAll({
+      where: { productId: id, userId: user },
+    });
+
+    if (reviews && reviews[0]) {
+      throw new createError[403]('Already wrote a review before');
+    }
+
+    const result = await Review.create({
+      userId: user,
+      productId: id,
+      body,
+      rating: parseInt(rating, 10),
+    });
+
+    if (!result) {
+      throw new createError[400]('Could not save your review.');
+    }
+
+    return res.status(201).json({
+      message: 'successfully submit review',
+      code: 201,
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deleteReview = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user = req.user.id;
+
+    const review = await Review.destroy({
+      where: { productId: id, userId: user },
+    });
+
+    if (!review) {
+      throw new createError[400]('Could not delete your review');
+    }
+
+    return res.status(200).json({
+      message: 'successfully delete review',
+      code: 200,
+      data: review,
     });
   } catch (error) {
     next(error);
